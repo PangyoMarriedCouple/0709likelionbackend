@@ -17,9 +17,7 @@ class WebChatConsumer(JsonWebsocketConsumer):
         self.accept()
 
         self.channel_id = self.scope["url_route"]["kwargs"]["channelId"]
-
         self.user = User.objects.get(id=1)
-
         async_to_sync(self.channel_layer.group_add)(self.channel_id, self.channel_name)
 
     def receive_json(self, content):
