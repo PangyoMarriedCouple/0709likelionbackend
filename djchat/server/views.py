@@ -15,6 +15,7 @@ class CategoryListViewSet(viewsets.ViewSet):
 
     @extend_schema(responses=CategorySerializer)
     def list(self, request):
+        print("=======category HTTP request recieved=======")
         serializer = CategorySerializer(self.queryset, many=True)
         return Response(serializer.data)
 
@@ -61,6 +62,8 @@ class ServerListViewSet(viewsets.ViewSet):
             GET /servers/?by_user=true&qty=10
 
         """
+        print("=======Server HTTP request recieved=======")
+
         category = request.query_params.get("category")
         qty = request.query_params.get("qty")
         by_user = request.query_params.get("by_user") == "true"
